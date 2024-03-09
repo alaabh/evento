@@ -1,0 +1,14 @@
+com.example.verygoodcore.evento.app-jetified-annotation-experimental-1.1.0-0 C:\Users\Mjihe\.gradle\caches\transforms-3\23292729e38e43504796ade9d18050dc\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.verygoodcore.evento.app-jetified-window-1.0.0-beta04-1 C:\Users\Mjihe\.gradle\caches\transforms-3\905370d3dab651637b8835e89c66cd73\transformed\jetified-window-1.0.0-beta04\res
+com.example.verygoodcore.evento.app-core-1.6.0-2 C:\Users\Mjihe\.gradle\caches\transforms-3\b265adeb376a3ac6007e3dd20039106a\transformed\core-1.6.0\res
+com.example.verygoodcore.evento.app-jetified-window-java-1.0.0-beta04-3 C:\Users\Mjihe\.gradle\caches\transforms-3\b999d05729379b348abd2dada5d1bd76\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.verygoodcore.evento.app-debug-4 D:\evento\evento\android\app\src\debug\res
+com.example.verygoodcore.evento.app-main-5 D:\evento\evento\android\app\src\main\res
+com.example.verygoodcore.evento.app-staging-6 D:\evento\evento\android\app\src\staging\res
+com.example.verygoodcore.evento.app-stagingDebug-7 D:\evento\evento\android\app\src\stagingDebug\res
+com.example.verygoodcore.evento.app-staging-8 D:\evento\evento\build\app\generated\res\pngs\staging\debug
+com.example.verygoodcore.evento.app-staging-9 D:\evento\evento\build\app\generated\res\resValues\staging\debug
+com.example.verygoodcore.evento.app-staging-10 D:\evento\evento\build\app\generated\res\rs\staging\debug
+com.example.verygoodcore.evento.app-mergeStagingDebugResources-11 D:\evento\evento\build\app\intermediates\incremental\stagingDebug\mergeStagingDebugResources\merged.dir
+com.example.verygoodcore.evento.app-mergeStagingDebugResources-12 D:\evento\evento\build\app\intermediates\incremental\stagingDebug\mergeStagingDebugResources\stripped.dir
+com.example.verygoodcore.evento.app-merged_res-13 D:\evento\evento\build\app\intermediates\merged_res\stagingDebug
