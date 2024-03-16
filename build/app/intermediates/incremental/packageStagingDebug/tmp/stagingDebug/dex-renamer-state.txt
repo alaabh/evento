@@ -1,4 +1,0 @@
-#Fri Mar 08 23:24:17 WAT 2024
-base.0=D\:\\evento\\evento\\build\\app\\intermediates\\dex\\stagingDebug\\mergeDexStagingDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

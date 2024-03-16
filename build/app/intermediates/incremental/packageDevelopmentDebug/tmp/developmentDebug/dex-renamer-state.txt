@@ -1,4 +1,0 @@
-#Fri Mar 08 23:24:19 WAT 2024
-base.0=D\:\\evento\\evento\\build\\app\\intermediates\\dex\\developmentDebug\\mergeDexDevelopmentDebug\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
