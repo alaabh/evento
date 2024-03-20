@@ -16,6 +16,10 @@ dependencies:
   intl: ^0.18.1
 
   flutter_gen: any
+  equatable: ^2.0.5
+  meta: ^1.11.0
+  get_storage: ^2.1.1
+  http: ^1.2.1
 dev_dependencies:
   bloc_test: ^9.1.6
   flutter_test:

@@ -1,0 +1,1 @@
+ D:\\evento\\evento\\.dart_tool\\flutter_gen\\gen_l10n\\app_localizations_en.dart D:\\evento\\evento\\.dart_tool\\flutter_gen\\gen_l10n\\app_localizations_es.dart D:\\evento\\evento\\.dart_tool\\flutter_gen\\gen_l10n\\app_localizations.dart:  D:\\evento\\evento\\l10n.yaml D:\\evento\\evento\\lib/l10n/arb\\app_en.arb D:\\evento\\evento\\lib/l10n/arb\\app_es.arb

@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../cubit/cubit/log_in_cubit.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -13,6 +17,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool isloading = false;
+
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,18 +105,48 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.25,
-                          child: FilledButton(
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStatePropertyAll<Color>(
+                          child: BlocConsumer<LogInCubit, LogInState>(
+                            listener: (context, state) {
+                              if (state is LoginLoading) {
+                                isloading = true;
+                                print("loading");
+                              } else if (state is LoginSuccess) {
+                                // Get.to(const ComptesPreview());
+                                isloading = false;
+                                //box.read('access_token');
+                                print("Succses");
+                              } else if (state is LoginFailed) {
+                                isloading = false;
+                                print("Failde");
+                              }
+                            },
+                            builder: (context, state) {
+                              return FilledButton(
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStatePropertyAll<
+                                              Color>(
                                           const Color.fromRGBO(0, 178, 158, 1)),
-                                  shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ))),
-                              onPressed: () {},
-                              child: Text('Login to your account')),
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ))),
+                                  onPressed: () {
+                                    BlocProvider.of<LogInCubit>(context).Login(
+                                      emailController.text,
+                                      passwordController.text,
+                                    );
+                                  },
+                                  child: isloading
+                                      ? const Center(
+                                          child: CircularProgressIndicator(
+                                          color:
+                                              Color.fromRGBO(112, 74, 209, 1),
+                                        ))
+                                      : Text('Login to your account'));
+                            },
+                          ),
                         ),
                       ],
                     ),
