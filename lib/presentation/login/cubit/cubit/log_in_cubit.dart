@@ -17,11 +17,11 @@ class LogInCubit extends Cubit<LogInState> {
     emit(LoginLoading());
 
     await UserService.login(email, password).then((response) async {
-      dynamic responseData = jsonDecode(response.body);
+      dynamic responseData = response.body;
       print(responseData);
 
       if (response.statusCode == 200) {
-        token = responseData['access_token'].toString();
+        token = responseData.toString();
 
         box.write("access_token", token);
 

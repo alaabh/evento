@@ -109,15 +109,15 @@ class _LoginPageState extends State<LoginPage> {
                             listener: (context, state) {
                               if (state is LoginLoading) {
                                 isloading = true;
-                                print("loading");
+                                print('loading');
                               } else if (state is LoginSuccess) {
                                 // Get.to(const ComptesPreview());
                                 isloading = false;
                                 //box.read('access_token');
-                                print("Succses");
+                                print('Success');
                               } else if (state is LoginFailed) {
                                 isloading = false;
-                                print("Failde");
+                                print('Failed');
                               }
                             },
                             builder: (context, state) {

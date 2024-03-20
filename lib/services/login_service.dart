@@ -5,14 +5,13 @@ import 'package:http/http.dart' as http;
 
 class UserService {
   final box = GetStorage();
-  static String gatewayUrl = "https://10.0.2.2:8111";
+  static String gatewayUrl = 'http://localhost:8111';
 
   static Future<http.Response> login(String email, String password) async {
-    return await http.post(Uri.parse(gatewayUrl + "/api/auth/login"),
+    return await http.post(Uri.parse("$gatewayUrl/api/auth/login"),
         headers: {
-          "Content-type": "application/json",
-         
+          'Content-Type': 'application/json',
         },
-        body: json.encode({"username": email, "password": password}));
+        body: json.encode({'email': email, 'password': password}),);
   }
 }
