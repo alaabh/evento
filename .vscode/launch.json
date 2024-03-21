@@ -14,7 +14,7 @@
         "--flavor",
         "development",
         "--target",
-        "lib/main.dart"
+        "lib/main.dart","--web-port=5434"
       ]
     },
     {
@@ -29,7 +29,9 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "args": ["--flavor", "production", "--target", "lib/main_production.dart"]
+      "args": ["--flavor", "production", "--target", "lib/main_production.dart"],
+      
+      
     }
   ]
 }
