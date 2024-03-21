@@ -27,16 +27,25 @@ class UserService {
     );
   }
 
-  static Future<http.Response> resetPassword(
-      String password, String token) async {
+
+ static Future<http.Response> resetPassword(String password, String token) async {
     print(token);
+    final queryParameters = <String, String>{
+      'token': token,
+    };
+
+    final headers = <String, String>{
+      'Content-Type': 'application/json',
+    };
+
+    final body =password;
+
+    final Uri uri = Uri.parse("$gatewayUrl/api/auth/reset_password");
+
     return await http.post(
-      Uri.parse("$gatewayUrl/api/auth/reset_password"),
-      headers: {
-        'Content-Type': 'application/json',
-        'token': token,
-      },
-      body: json.encode(password),
+      uri.replace(queryParameters: queryParameters),
+      headers: headers,
+      body: jsonEncode(body),
     );
   }
 }

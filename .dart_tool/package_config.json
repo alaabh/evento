@@ -350,6 +350,12 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "loading_indicator",
+      "rootUri": "file:///C:/Users/siwar/AppData/Local/Pub/Cache/hosted/pub.dev/loading_indicator-3.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "logging",
       "rootUri": "file:///C:/Users/siwar/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.2.0",
       "packageUri": "lib/",
@@ -686,7 +692,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-03-21T00:42:17.059427Z",
+  "generated": "2024-03-21T09:47:37.440198Z",
   "generator": "pub",
   "generatorVersion": "3.3.1"
 }

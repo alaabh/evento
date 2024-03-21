@@ -17,7 +17,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailController = TextEditingController();
+  bool isHidden = true;
+  void showPassword() {
+    setState(() {
+      isHidden = !isHidden;
+    });
+  }
+
+
+TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isloading = false;
 
@@ -59,13 +67,22 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Text("Email"),
                         Material(
-                          elevation: 1.5,
+                          borderRadius:BorderRadius.all(Radius.circular(8)),
+                          elevation: 0.5,
+                          shadowColor: Color(0xffD0D5DD),
                           child: TextField(
                             controller: emailController,
                             decoration: const InputDecoration(
-                              border: OutlineInputBorder(
+                              hintText: 'Your email',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
+                                BorderRadius.all(Radius.circular(8)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(8)),
                               ),
                             ),
                           ),
@@ -81,24 +98,52 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Password"),
+                        Text("Password",
+                          style: TextStyle(fontSize: 14,color: Colors.black )),
                         Material(
-                          elevation: 1.5,
+                          borderRadius:BorderRadius.all(Radius.circular(8)),
+                          elevation: 0.5,
+                          shadowColor: Color(0xffD0D5DD),
                           child: TextField(
                             controller: passwordController,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(
+                            decoration:  InputDecoration(
+                              hintText: 'Type your password',
+                              suffix: InkWell(
+                                onTap: showPassword,
+                                child: Icon(
+
+                                  isHidden
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Color(0xffD0D5DD)
+                                ),
+                              ),
+
+
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8)),
                               ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(8)),
+                              ),
                             ),
+                            obscureText: isHidden,
                           ),
+
                         ),
                       ],
                     ),
                   ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.01),
                   SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.3,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         InkWell(
                           onTap: () {
@@ -108,6 +153,8 @@ class _LoginPageState extends State<LoginPage> {
                             "Forget password?",
                             style: TextStyle(
                               decoration: TextDecoration.underline,
+                              decorationColor: Color.fromRGBO(0, 178, 158, 1),
+                              color: Color.fromRGBO(0, 178, 158, 1)
                             ),
                           ),
                         )
@@ -123,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
+                          width: MediaQuery.of(context).size.width * 0.3,
                           child: BlocConsumer<LogInCubit, LogInState>(
                             listener: (context, state) {
                               if (state is LoginLoading) {
@@ -169,17 +216,29 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.08,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                  child:
+                  Divider(
+                    color: Colors.black,
+                   thickness: 0.2,
+                  ))
                 ],
               ),
             ),
           ),
+
           Container(
             width: MediaQuery.of(context).size.width / 2,
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage('image/login.png'), fit: BoxFit.fill)),
           ),
+
         ],
       ),
     );
