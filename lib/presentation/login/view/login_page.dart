@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../cubit/cubit/log_in_cubit.dart';
+
 @RoutePage()
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -96,11 +97,23 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-                  SizedBox(child:Row(
-                    children: [
-                      Text("Forget password?")
-                    ],
-                  ) ,),
+                  SizedBox(
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            context.router.pushNamed('/request-password');
+                          },
+                          child: Text(
+                            "Forget password?",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
