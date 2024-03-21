@@ -1,12 +1,14 @@
 import 'package:evento/gen_l10n/app_localizations.dart';
-import 'package:evento/presentation/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+import '../../app_router.dart';
 import '../../login/cubit/cubit/log_in_cubit.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+   App({super.key});
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class App extends StatelessWidget {
           BlocProvider<LogInCubit>(
             create: (context) => LogInCubit(),
           ),],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: AppBarTheme(
@@ -25,7 +27,8 @@ class App extends StatelessWidget {
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const LoginPage(),
+        routerConfig: _appRouter.config(),
+       // home: const LoginPage(),
       ),
     );
   }

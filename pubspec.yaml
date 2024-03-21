@@ -20,12 +20,23 @@ dependencies:
   meta: ^1.11.0
   get_storage: ^2.1.1
   http: ^1.2.1
+  auto_route: ^7.9.2
+  dev: ^1.0.0
+  auto_route_generator: ^7.3.2
+  
+  
+  
+  
+ 
 dev_dependencies:
   bloc_test: ^9.1.6
+  build_runner: ^2.4.8
   flutter_test:
     sdk: flutter
   mocktail: ^1.0.3
   very_good_analysis: ^5.1.0
+  
+  
 
 flutter:
   uses-material-design: true

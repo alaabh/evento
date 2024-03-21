@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../cubit/cubit/log_in_cubit.dart';
-
+@RoutePage()
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -95,6 +96,11 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
+                  SizedBox(child:Row(
+                    children: [
+                      Text("Forget password?")
+                    ],
+                  ) ,),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
