@@ -68,7 +68,7 @@ bool error = false;
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.3,
                       decoration: BoxDecoration(
-                        color: Color(0xFFdfd3d6),
+                        color: Color(0xFFe7cdcf),
                         border: Border.all(
                           color: Colors.transparent,
                           width: 1.0,
@@ -76,7 +76,7 @@ bool error = false;
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                         child: Padding(
-                    padding: const EdgeInsets.all(8.0), // Adjust padding values as needed
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "The email or the password or both you entered did not match our records. Please double-check and try again.",
                       style: TextStyle(color: Colors.red),
@@ -162,11 +162,18 @@ bool error = false;
                               } else if (state is LoginSuccess) {
                                 // Get.to(const ComptesPreview());
                                 isloading = false;
+                                setState(() {
+                                  error=false;
+                                });
                                 //box.read('access_token');
                                 print('Success');
                               } else if (state is LoginFailed) {
                                 isloading = false;
-                                error=true;
+                                setState(() {
+                                  error=true;
+                                  passwordController.text="";
+                                  emailController.text="";
+                                });
                                 print('Failed');
                               }
                             },
@@ -214,7 +221,34 @@ bool error = false;
                   Divider(
                     color: Colors.black,
                    thickness: 0.2,
-                  ))
+                  )),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      children :[
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                          Text("New to evento?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                            Text("ask for an account", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: Color(0xff00B29E)),)
+
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text("Need Help?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                            Text("support@evento.co", style: TextStyle(fontSize: 14, color: Color(0xff00B29E)),)
+
+                          ],
+                        )
+                      ]
+                    ),
+                  )
                 ],
               ),
             ),

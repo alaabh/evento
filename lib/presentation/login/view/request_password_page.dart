@@ -18,6 +18,7 @@ class RequestPasswordPage extends StatefulWidget {
 class _RequestPasswordPageState extends State<RequestPasswordPage> {
   TextEditingController emailController = TextEditingController();
   bool isloading = false;
+  bool error =false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +74,17 @@ class _RequestPasswordPageState extends State<RequestPasswordPage> {
                   children: [
 
                     Text("Email"),
-                   InputText(controller: emailController,hint: 'Your email')
+                   InputText(controller: emailController,hint: 'Your email',
+                   fct:
+                       (value) {
+                        if (!RegExp(
+                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                            .hasMatch(value!)&&(value.isNotEmpty)) {
+                        return 'Wrong email format.';
+                        }
+                        else if(error){ return 'Invalid email. Please enter your registred email.';}
+                        return null;},)
+
                   ],
                 ),
               ),
@@ -95,10 +106,16 @@ class _RequestPasswordPageState extends State<RequestPasswordPage> {
                             } else if (state is RequstPasswordSuccess) {
                               // Get.to(const ComptesPreview());
                               isloading = false;
+                              setState(() {
+                                error=false;
+                              });
                               //box.read('access_token');
                               print('Success');
                             } else if (state is RequstPasswordFailed) {
                               isloading = false;
+                              setState(() {
+                                error=true;
+                              });
                               print('Failed');
                             }
                           },
