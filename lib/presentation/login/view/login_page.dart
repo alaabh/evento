@@ -1,11 +1,16 @@
+import 'dart:html';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:evento/widgets/input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
+import '../../../widgets/sideImage.dart';
 import '../cubit/cubit/log_in_cubit.dart';
 
 @RoutePage()
@@ -17,22 +22,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool isHidden = true;
-  void showPassword() {
-    setState(() {
-      isHidden = !isHidden;
-    });
-  }
+
 
 
 TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isloading = false;
-
+bool error = false;
   final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+      Scaffold(
       body: Row(
         children: [
           SizedBox(
@@ -60,33 +62,47 @@ TextEditingController emailController = TextEditingController();
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
+                  Visibility(
+
+                    visible: error,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFdfd3d6),
+                        border: Border.all(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                        child: Padding(
+                    padding: const EdgeInsets.all(8.0), // Adjust padding values as needed
+                    child: Text(
+                      "The email or the password or both you entered did not match our records. Please double-check and try again.",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Email"),
-                        Material(
-                          borderRadius:BorderRadius.all(Radius.circular(8)),
-                          elevation: 0.5,
-                          shadowColor: Color(0xffD0D5DD),
-                          child: TextField(
-                            controller: emailController,
-                            decoration: const InputDecoration(
-                              hintText: 'Your email',
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(8)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(8)),
-                              ),
-                            ),
-                          ),
-                        )
+                       InputText(controller: emailController,
+                       hint: 'Your email',
+                       fct:
+                        (value) {
+                              if (!RegExp(
+                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                  .hasMatch(value!)&&(value.isNotEmpty)) {
+                               return 'Wrong email format.';
+                                          }
+                                    return null;}),
                       ],
                     ),
                   ),
@@ -100,41 +116,8 @@ TextEditingController emailController = TextEditingController();
                       children: [
                         Text("Password",
                           style: TextStyle(fontSize: 14,color: Colors.black )),
-                        Material(
-                          borderRadius:BorderRadius.all(Radius.circular(8)),
-                          elevation: 0.5,
-                          shadowColor: Color(0xffD0D5DD),
-                          child: TextField(
-                            controller: passwordController,
-                            decoration:  InputDecoration(
-                              hintText: 'Type your password',
-                              suffix: InkWell(
-                                onTap: showPassword,
-                                child: Icon(
-
-                                  isHidden
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Color(0xffD0D5DD)
-                                ),
-                              ),
-
-
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(8)),
-                              ),
-                            ),
-                            obscureText: isHidden,
-                          ),
-
-                        ),
+                 InputText(controller: passwordController,obscure: true,
+                 hint: 'Type your password')
                       ],
                     ),
                   ),
@@ -183,6 +166,7 @@ TextEditingController emailController = TextEditingController();
                                 print('Success');
                               } else if (state is LoginFailed) {
                                 isloading = false;
+                                error=true;
                                 print('Failed');
                               }
                             },
@@ -204,12 +188,16 @@ TextEditingController emailController = TextEditingController();
                                       passwordController.text,
                                     );
                                   },
-                                  child: isloading
-                                      ? const Center(
-                                          child: CircularProgressIndicator(
-                                          color:
-                                              Color.fromRGBO(112, 74, 209, 1),
-                                        ))
+                                 child: isloading
+                                      ?  SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.01,
+                                      child:
+                                      const Center(
+                                          child:  LoadingIndicator(
+                                              indicatorType: Indicator.lineSpinFadeLoader,
+                                              colors:  [Colors.white],
+                                              strokeWidth: 0.2
+                                          )))
                                       : Text('Login to your account'));
                             },
                           ),
@@ -231,13 +219,7 @@ TextEditingController emailController = TextEditingController();
               ),
             ),
           ),
-
-          Container(
-            width: MediaQuery.of(context).size.width / 2,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('image/login.png'), fit: BoxFit.fill)),
-          ),
+          SideImage(),
 
         ],
       ),

@@ -48,4 +48,13 @@ class UserService {
       body: jsonEncode(body),
     );
   }
+  static Future<http.Response> verifyExpiration(String token) async {
+    return await http.post(
+      Uri.parse("$gatewayUrl/api/auth/verifyToken/$token"),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+    );
+  }
 }

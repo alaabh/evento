@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:evento/widgets/input.dart';
+import 'package:evento/widgets/sideImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
@@ -71,27 +73,7 @@ class _RequestPasswordPageState extends State<RequestPasswordPage> {
                   children: [
 
                     Text("Email"),
-                    Material(
-                      borderRadius:BorderRadius.all(Radius.circular(8)),
-                      elevation: 0.5,
-                      shadowColor: Color(0xffD0D5DD),
-                      child: TextField(
-                        controller: emailController,
-                        decoration: const InputDecoration(
-                          hintText: 'Your email',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(8)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(8)),
-                          ),
-                        ),
-                      ),
-                    )
+                   InputText(controller: emailController,hint: 'Your email')
                   ],
                 ),
               ),
@@ -139,7 +121,7 @@ class _RequestPasswordPageState extends State<RequestPasswordPage> {
                                 },
                                 child: isloading
                                     ?  SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.02,
+                                    width: MediaQuery.of(context).size.width * 0.01,
                                  child:
                                       const Center(
                                        child:  LoadingIndicator(
@@ -157,12 +139,7 @@ class _RequestPasswordPageState extends State<RequestPasswordPage> {
             ),
            )
         ),
-            Container(
-              width: MediaQuery.of(context).size.width / 2,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('image/login.png'), fit: BoxFit.fill)),
-            ),
+            SideImage(),
           ],
         ),
 

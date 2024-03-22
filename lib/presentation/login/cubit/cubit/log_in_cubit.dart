@@ -48,21 +48,32 @@ class LogInCubit extends Cubit<LogInState> {
       }
     });
   }
-  void resetPassword(String email,String token) async {
+  void resetPassword(String password,String token) async {
     emit(ResetPasswordLoading());
 
-    await UserService.resetPassword(email,token).then((response) async {
+    await UserService.resetPassword(password,token).then((response) async {
       dynamic responseData = response.body;
       print(responseData);
 
       if (response.statusCode == 200) {
-        
 
-        
 
         emit(ResetPasswordSuccess());
       } else {
         emit(ResetPasswordFailed());
+      }
+    });
+  }
+  void linkExpiration(String token) async {
+    emit(NotExpiredLinkFailed());
+
+    await UserService.verifyExpiration(token).then((response) async {
+
+      if (response.statusCode == 200) {
+
+        emit(NotExpiredLinkSuccess());
+      } else {
+        emit(NotExpiredLinkFailed());
       }
     });
   }

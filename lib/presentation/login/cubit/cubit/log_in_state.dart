@@ -13,3 +13,6 @@ class RequstPasswordLoading extends LogInState {}
 class ResetPasswordSuccess extends LogInState {}
 class ResetPasswordFailed extends LogInState {}
 class ResetPasswordLoading extends LogInState {}
+class NotExpiredLinkLoading extends LogInState {}
+class NotExpiredLinkSuccess extends LogInState {}
+class NotExpiredLinkFailed extends LogInState {}
