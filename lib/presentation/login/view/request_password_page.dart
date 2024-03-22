@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:evento/utils/colorConstants.dart';
 import 'package:evento/widgets/input.dart';
 import 'package:evento/widgets/sideImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
+import '../../../widgets/button.dart';
 import '../cubit/cubit/log_in_cubit.dart';
 
 @RoutePage()
@@ -39,11 +40,11 @@ class _RequestPasswordPageState extends State<RequestPasswordPage> {
                  children: [
 
                  IconButton(
-                   color: Color(0xFF667085),
+                   color: ColorConstants.greyColor,
                    icon: Icon(
                      Icons.arrow_back_rounded,
                      size: 30.0,
-                     color:Color(0xFF667085)
+                     color:ColorConstants.greyColor
                    ),
                    onPressed: () => Navigator.of(context).pop(),
                  ),
@@ -120,33 +121,16 @@ class _RequestPasswordPageState extends State<RequestPasswordPage> {
                             }
                           },
                           builder: (context, state) {
-                            return FilledButton(
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                    MaterialStatePropertyAll<Color>(
-                                        const Color.fromRGBO(0, 178, 158, 1)),
-                                    shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8.0),
-                                        ))),
-                                onPressed: () {
-                                  BlocProvider.of<LogInCubit>(context)
-                                      .requestPassword(
-                                    emailController.text,
-                                  );
-                                },
-                                child: isloading
-                                    ?  SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.01,
-                                 child:
-                                      const Center(
-                                       child:  LoadingIndicator(
-                                        indicatorType: Indicator.lineSpinFadeLoader,
-                                        colors:  [Colors.white],
-                                      strokeWidth: 0.2
-                                    )))
-                                    : Text('Send'));
+                            return Button(
+                              onpressd: () {
+                                BlocProvider.of<LogInCubit>(context)
+                                    .requestPassword(
+                                  emailController.text,
+                                );
+                              },
+                              buttonText: 'Send',
+                              loader: isloading,
+                            );
                           },
                         ),
                       ),

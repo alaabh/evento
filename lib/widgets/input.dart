@@ -1,3 +1,4 @@
+import 'package:evento/utils/colorConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/services/text_formatter.dart';
 
@@ -10,17 +11,15 @@ class InputText extends StatefulWidget {
 
   final String? value;
 
-  final FilteringTextInputFormatter? filterTextInputFormatter;
+
   const InputText({
     Key? key,
     this.hint,
-
     required this.controller,
     this.obscure = false,
     this.fct,
     this.value,
 
-    this.filterTextInputFormatter,
 
   }) : super(key: key);
 
@@ -40,7 +39,7 @@ class _InputTextState extends State<InputText> {
     return Material(
         borderRadius:BorderRadius.all(Radius.circular(8)),
     elevation: 0.5,
-    shadowColor: Color(0xffD0D5DD),
+    shadowColor: ColorConstants.whiteColor,
       child:
       TextFormField(
       initialValue: widget.value,
@@ -55,24 +54,24 @@ class _InputTextState extends State<InputText> {
               isHidden
                   ? Icons.visibility_off
                   : Icons.visibility,
-              color: Color(0xffD0D5DD)
+              color: ColorConstants.greyColor
           ),
         ):null,
         border: const OutlineInputBorder(),
         hintText: widget.hint,
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color:Color(0xffD0D5DD), width: 0.0),
+          borderSide:  BorderSide(color:ColorConstants.whiteColor, width: 0.0),
           borderRadius:
           BorderRadius.all(Radius.circular(8)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color:Color(0xff00B29E), width: 0.0),
+          borderSide:  BorderSide(color:ColorConstants.greenColor, width: 0.0),
           borderRadius:
           BorderRadius.all(Radius.circular(8)),
         ),
         errorBorder:
         OutlineInputBorder(
-          borderSide: const BorderSide(color:Color(0xffF34343), width: 0.0),
+          borderSide:  BorderSide(color:ColorConstants.redColor, width: 0.0),
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
       ),

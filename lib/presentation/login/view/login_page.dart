@@ -1,6 +1,7 @@
-import 'dart:html';
+
 
 import 'package:auto_route/auto_route.dart';
+import 'package:evento/utils/colorConstants.dart';
 import 'package:evento/widgets/input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
+
+import '../../../widgets/button.dart';
 import '../../../widgets/sideImage.dart';
 import '../cubit/cubit/log_in_cubit.dart';
 
@@ -68,7 +70,7 @@ bool error = false;
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.3,
                       decoration: BoxDecoration(
-                        color: Color(0xFFe7cdcf),
+                        color: ColorConstants.lightRedColor,
                         border: Border.all(
                           color: Colors.transparent,
                           width: 1.0,
@@ -79,7 +81,7 @@ bool error = false;
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "The email or the password or both you entered did not match our records. Please double-check and try again.",
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: ColorConstants.redColor),
                     ),
                   ),
                     ),
@@ -136,8 +138,8 @@ bool error = false;
                             "Forget password?",
                             style: TextStyle(
                               decoration: TextDecoration.underline,
-                              decorationColor: Color.fromRGBO(0, 178, 158, 1),
-                              color: Color.fromRGBO(0, 178, 158, 1)
+                              decorationColor: ColorConstants.greenColor,
+                              color: ColorConstants.greenColor
                             ),
                           ),
                         )
@@ -178,34 +180,15 @@ bool error = false;
                               }
                             },
                             builder: (context, state) {
-                              return FilledButton(
-                                  style: ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll<
-                                              Color>(
-                                          const Color.fromRGBO(0, 178, 158, 1)),
-                                      shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ))),
-                                  onPressed: () {
-                                    BlocProvider.of<LogInCubit>(context).Login(
-                                      emailController.text,
-                                      passwordController.text,
-                                    );
-                                  },
-                                 child: isloading
-                                      ?  SizedBox(
-                                      width: MediaQuery.of(context).size.width * 0.01,
-                                      child:
-                                      const Center(
-                                          child:  LoadingIndicator(
-                                              indicatorType: Indicator.lineSpinFadeLoader,
-                                              colors:  [Colors.white],
-                                              strokeWidth: 0.2
-                                          )))
-                                      : Text('Login to your account'));
+                              return Button(
+                                onpressd:() {  BlocProvider.of<LogInCubit>(context).Login(
+                              emailController.text,
+                              passwordController.text,
+                              );
+                                },
+                                buttonText: 'Login to your account',
+                                loader: isloading
+                              );
                             },
                           ),
                         ),
@@ -233,7 +216,7 @@ bool error = false;
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                           Text("New to evento?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-                            Text("ask for an account", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: Color(0xff00B29E)),)
+                            Text("ask for an account", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: ColorConstants.greenColor),)
 
                           ],
                         ),
@@ -242,7 +225,7 @@ bool error = false;
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text("Need Help?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-                            Text("support@evento.co", style: TextStyle(fontSize: 14, color: Color(0xff00B29E)),)
+                            Text("support@evento.co", style: TextStyle(fontSize: 14, color: ColorConstants.greenColor),)
 
                           ],
                         )

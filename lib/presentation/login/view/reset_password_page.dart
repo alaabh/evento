@@ -6,6 +6,7 @@ import 'package:evento/widgets/input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../widgets/button.dart';
 import '../../../widgets/sideImage.dart';
 import '../../app_router.dart';
 import '../cubit/cubit/log_in_cubit.dart';
@@ -107,20 +108,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.3,
-          child: FilledButton(
-          style: ButtonStyle(
-          backgroundColor:
-          MaterialStatePropertyAll<Color>(
-          const Color.fromRGBO(0, 178, 158, 1)),
-          shape: MaterialStateProperty.all<
-          RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            ))),
-            onPressed: () {
-              context.router.pushNamed('/request-password');
-            },
-            child: Text('Resend another link')),
+          child: Button(
+            onpressd:(){context.router.pushNamed('/request-password');} ,
+            buttonText: 'Resend another link',
+            loader:false
+          )
         )
           ],)
 
@@ -216,28 +208,17 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         }
                       },
                       builder: (context, state) {
-                        return FilledButton(
-                            style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStatePropertyAll<Color>(
-                                        const Color.fromRGBO(0, 178, 158, 1)),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ))),
-                            onPressed: () {
-                              BlocProvider.of<LogInCubit>(context).resetPassword(
+                        return Button(
+                          onpressd: () {
+                            BlocProvider.of<LogInCubit>(context).resetPassword(
                                 passwordController.text,
                                 token!
-                              );
-                            },
-                            child: isloading
-                                ? const Center(
-                                    child: CircularProgressIndicator(
-                                    color: Color.fromRGBO(112, 74, 209, 1),
-                                  ))
-                                : Text('Login to your account'));
+                            );
+                            context.router.pushNamed('/password_updated');
+                          },
+                          buttonText: 'Reset password',
+                          loader: isloading,
+                        );
                       },
                     ),
                   ),

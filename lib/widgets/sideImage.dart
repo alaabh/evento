@@ -18,7 +18,7 @@ class _SideImageState extends State<SideImage> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width / 2,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('image/login.png'), fit: BoxFit.fill)),
     );

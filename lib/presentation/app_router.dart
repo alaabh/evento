@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'login/view/login_page.dart';
 import 'login/view/request_password_page.dart';
 import 'login/view/reset_password_page.dart';
+import 'login/view/password_updated_page.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()
@@ -23,5 +24,10 @@ class AppRouter extends _$AppRouter {
           page: RequestPasswordRoute.page,
           path: '/request-password',
         ),
+    AutoRoute(
+      page: PasswordUpdatedRoute.page,
+      path: '/password_updated',
+    ),
+
       ];
 }
