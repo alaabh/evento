@@ -1,15 +1,16 @@
 import 'dart:convert';
 
+import 'package:evento/host.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class UserService {
   final box = GetStorage();
-  static String gatewayUrl = 'http://localhost:8111';
+
 
   static Future<http.Response> login(String email, String password) async {
     return await http.post(
-      Uri.parse("$gatewayUrl/api/auth/login"),
+      Uri.parse("${Host.gatewayUrl}/api/auth/login"),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -19,7 +20,7 @@ class UserService {
 
   static Future<http.Response> requestPassword(String email) async {
     return await http.post(
-      Uri.parse("$gatewayUrl/api/auth/request-password"),
+      Uri.parse(Host.gatewayUrl+"/api/auth/request-password"),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -40,7 +41,7 @@ class UserService {
 
     final body =password;
 
-    final Uri uri = Uri.parse("$gatewayUrl/api/auth/reset_password");
+    final Uri uri = Uri.parse("${Host.gatewayUrl}/api/auth/reset_password");
 
     return await http.post(
       uri.replace(queryParameters: queryParameters),
@@ -50,7 +51,7 @@ class UserService {
   }
   static Future<http.Response> verifyExpiration(String token) async {
     return await http.post(
-      Uri.parse("$gatewayUrl/api/auth/verifyToken/$token"),
+      Uri.parse("${Host.gatewayUrl}/api/auth/verifyToken/$token"),
       headers: {
         'Content-Type': 'application/json',
       },
