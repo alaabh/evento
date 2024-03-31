@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
+import 'home/view/home_view.dart';
 import 'login/view/login_page.dart';
 import 'login/view/request_password_page.dart';
 import 'login/view/reset_password_page.dart';
@@ -13,7 +14,7 @@ class AppRouter extends _$AppRouter {
         // add your routes here
         AutoRoute(
           page: LoginRoute.page,
-          initial: true,
+         
           path: '/login',
         ),
         AutoRoute(
@@ -28,6 +29,12 @@ class AppRouter extends _$AppRouter {
       page: PasswordUpdatedRoute.page,
       path: '/password_updated',
     ),
+    AutoRoute(
+      page: HomeRoute.page,
+       initial: true,
+      path: '/home',
+    ),
+   
 
       ];
 }
