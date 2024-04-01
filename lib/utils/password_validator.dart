@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 
 class PasswordValidator extends StatefulWidget {
   const PasswordValidator({
-    super.key,
-    required this.password,
-    required this.onStrengthChanged,
+    required this.password, required this.onStrengthChanged, super.key,
   });
 
   final String password;
@@ -38,9 +36,9 @@ class _PasswordValidatorState extends State<PasswordValidator> {
 
 
   final Map<RegExp, String> _validators = {
-    RegExp(r'[A-Z]'): 'Password must contain at least one upper case.',
+    RegExp('[A-Z]'): 'Password must contain at least one upper case.',
     RegExp(r'[!@#\$%^&*(),.?":{}|<>]'): 'Password must contain at least one special character.',
-    RegExp(r'[a-z]'): 'One lower case letter.',
+    RegExp('[a-z]'): 'One lower case letter.',
     RegExp(r'^.{8,32}$'): 'Password must be at least 8 characters long.',
   };
 
@@ -57,24 +55,24 @@ class _PasswordValidatorState extends State<PasswordValidator> {
           final hasMatch = entry.key.hasMatch(widget.password);
 
           final color =
-          hasValue ? (hasMatch ? Color(0xff26B195) : Color(0xff8993AB) ) : null;
+          hasValue ? (hasMatch ? const Color(0xff26B195) : const Color(0xff8993AB) ) : null;
 
           return Padding(
-            padding: const EdgeInsets.only(bottom: 4.0),
+            padding: const EdgeInsets.only(bottom: 4),
             child:
                 Row(
                   children: [
                     Icon(hasMatch?Icons.check_circle_rounded:Icons.cancel_rounded,
                         color: color,
-                        size:18
+                        size:18,
                     ),
                     Text(
                       entry.value,
-                      style: TextStyle(color: Color(0xff344054)),
+                      style: const TextStyle(color: Color(0xff344054)),
                       ),
 
                   ],
-                )
+                ),
 
           );
         },

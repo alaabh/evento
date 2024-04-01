@@ -1,15 +1,14 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:evento/presentation/app_router.dart';
+import 'package:evento/presentation/login/cubit/cubit/log_in_cubit.dart';
 import 'package:evento/utils/password_validator.dart';
+import 'package:evento/widgets/button.dart';
 import 'package:evento/widgets/input.dart';
+import 'package:evento/widgets/sideImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../widgets/button.dart';
-import '../../../widgets/sideImage.dart';
-import '../../app_router.dart';
-import '../cubit/cubit/log_in_cubit.dart';
 
 @RoutePage()
 class ResetPasswordPage extends StatefulWidget {
@@ -24,9 +23,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final appRouter = AppRouter();
-  String? token = "";
+  String? token = '';
   String? getResetTokenFromEmail(String resetLink) {
-    final Uri uri = Uri.parse(resetLink);
+    final uri = Uri.parse(resetLink);
     setState(() {
       token = uri.queryParameters['token'];
     });
@@ -35,7 +34,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     return token;
   }
 
-  String url = "";
+  String url = '';
   bool isStrong = false;
 
 
@@ -93,14 +92,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Text(
+          const Text(
           'Link Expired',
           style: TextStyle(fontSize: 34, fontWeight: FontWeight.w700),
         ),
           SizedBox(
 
           width: MediaQuery.of(context).size.width * 0.3,
-          child: Text('Your link has expired, because you haven''t used it. Reset password link expires in every 24 hours and can be used only once. you can create one by clicking the button below.'),
+          child: const Text('Your link has expired, because you haven''t used it. Reset password link expires in every 24 hours and can be used only once. you can create one by clicking the button below.'),
           ),
             SizedBox(
 
@@ -111,9 +110,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           child: Button(
             onpressd:(){context.router.pushNamed('/request-password');} ,
             buttonText: 'Resend another link',
-            loader:false
-          )
-        )
+            loader:false,
+          ),
+        ),
           ],)
 
 
@@ -121,22 +120,22 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Set New Password',
                     style: TextStyle(fontSize: 34, fontWeight: FontWeight.w700),
                   ),
                   SizedBox(
 
                     width: MediaQuery.of(context).size.width * 0.3,
-                    child: Text('Your new password must be different to previously used passwords.'),
+                    child: const Text('Your new password must be different to previously used passwords.'),
                   ),
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.3,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text("Password"),
-                 InputText(controller: passwordController,hint:'Your password',obscure: true,)
+                  const Text('Password'),
+                 InputText(controller: passwordController,hint:'Your password',obscure: true,),
                   ],
           ),
         ),
@@ -150,7 +149,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Confirm password"),
+                  const Text('Confirm password'),
 
                  InputText(controller: confirmPasswordController,fct: (value) {
                    if (value != passwordController.text) {
@@ -158,7 +157,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                    }
                    return null;
                  },hint: 'Type your password again',
-                 obscure: true,)
+                 obscure: true,),
 
                 ],
               ),
@@ -212,7 +211,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           onpressd: () {
                             BlocProvider.of<LogInCubit>(context).resetPassword(
                                 passwordController.text,
-                                token!
+                                token!,
                             );
                             context.router.pushNamed('/password_updated');
                           },
@@ -229,7 +228,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       );},
     ),
     ),),
-            SideImage(),
+            const SideImage(),
           ],
 
 

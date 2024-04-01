@@ -1,19 +1,14 @@
 
 
 import 'package:auto_route/auto_route.dart';
+import 'package:evento/presentation/login/cubit/cubit/log_in_cubit.dart';
 import 'package:evento/utils/colorConstants.dart';
+import 'package:evento/widgets/button.dart';
 import 'package:evento/widgets/input.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:evento/widgets/sideImage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
-
-
-import '../../../widgets/button.dart';
-import '../../../widgets/sideImage.dart';
-import '../cubit/cubit/log_in_cubit.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -53,14 +48,14 @@ bool error = false;
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
-                  Text(
+                  const Text(
                     'Welcome back',
                     style: TextStyle(fontSize: 34, fontWeight: FontWeight.w700),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
-                  Text('Log in securely by entering your information below'),
+                  const Text('Log in securely by entering your information below'),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
@@ -73,14 +68,13 @@ bool error = false;
                         color: ColorConstants.lightRedColor,
                         border: Border.all(
                           color: Colors.transparent,
-                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                         child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: Text(
-                      "The email or the password or both you entered did not match our records. Please double-check and try again.",
+                      'The email or the password or both you entered did not match our records. Please double-check and try again.',
                       style: TextStyle(color: ColorConstants.redColor),
                     ),
                   ),
@@ -94,17 +88,17 @@ bool error = false;
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Email"),
+                        const Text('Email'),
                        InputText(controller: emailController,
                        hint: 'Your email',
                        fct:
                         (value) {
                               if (!RegExp(
-                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',)
                                   .hasMatch(value!)&&(value.isNotEmpty)) {
                                return 'Wrong email format.';
                                           }
-                                    return null;}),
+                                    return null;},),
                       ],
                     ),
                   ),
@@ -116,15 +110,15 @@ bool error = false;
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Password",
-                          style: TextStyle(fontSize: 14,color: Colors.black )),
-                 InputText(controller: passwordController,obscure: true,
-                 hint: 'Type your password')
+                        const Text('Password',
+                          style: TextStyle(fontSize: 14,color: Colors.black ),),
+                                    InputText(controller: passwordController,obscure: true,
+                 hint: 'Type your password',),
                       ],
                     ),
                   ),
               SizedBox(
-                height: MediaQuery.of(context).size.width * 0.01),
+                height: MediaQuery.of(context).size.width * 0.01,),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: Row(
@@ -135,14 +129,14 @@ bool error = false;
                             context.router.pushNamed('/request-password');
                           },
                           child: Text(
-                            "Forget password?",
+                            'Forget password?',
                             style: TextStyle(
                               decoration: TextDecoration.underline,
                               decorationColor: ColorConstants.greenColor,
-                              color: ColorConstants.greenColor
+                              color: ColorConstants.greenColor,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -173,8 +167,8 @@ bool error = false;
                                 isloading = false;
                                 setState(() {
                                   error=true;
-                                  passwordController.text="";
-                                  emailController.text="";
+                                  passwordController.text='';
+                                  emailController.text='';
                                 });
                                 print('Failed');
                               }
@@ -187,7 +181,7 @@ bool error = false;
                               );
                                 },
                                 buttonText: 'Login to your account',
-                                loader: isloading
+                                loader: isloading,
                               );
                             },
                           ),
@@ -201,10 +195,10 @@ bool error = false;
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
                   child:
-                  Divider(
+                  const Divider(
                     color: Colors.black,
                    thickness: 0.2,
-                  )),
+                  ),),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: Row(
@@ -215,8 +209,8 @@ bool error = false;
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                          Text("New to evento?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-                            Text("ask for an account", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: ColorConstants.greenColor),)
+                          const Text('New to evento?', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                            Text('ask for an account', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,color: ColorConstants.greenColor),),
 
                           ],
                         ),
@@ -224,19 +218,19 @@ bool error = false;
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text("Need Help?", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-                            Text("support@evento.co", style: TextStyle(fontSize: 14, color: ColorConstants.greenColor),)
+                            const Text('Need Help?', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                            Text('support@evento.co', style: TextStyle(fontSize: 14, color: ColorConstants.greenColor),),
 
                           ],
-                        )
-                      ]
+                        ),
+                      ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-          SideImage(),
+          const SideImage(),
 
         ],
       ),

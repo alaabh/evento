@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:evento/presentation/home/view/home_view.dart';
+import 'package:evento/presentation/login/view/login_page.dart';
+import 'package:evento/presentation/login/view/password_updated_page.dart';
+import 'package:evento/presentation/login/view/request_password_page.dart';
+import 'package:evento/presentation/login/view/reset_password_page.dart';
 
-import 'home/view/home_view.dart';
-import 'login/view/login_page.dart';
-import 'login/view/request_password_page.dart';
-import 'login/view/reset_password_page.dart';
-import 'login/view/password_updated_page.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()

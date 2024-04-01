@@ -10,7 +10,7 @@ class UserService {
 
   static Future<http.Response> login(String email, String password) async {
     return await http.post(
-      Uri.parse("${Host.gatewayUrl}/api/auth/login"),
+      Uri.parse('${Host.gatewayUrl}/api/auth/login'),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -20,7 +20,7 @@ class UserService {
 
   static Future<http.Response> requestPassword(String email) async {
     return await http.post(
-      Uri.parse(Host.gatewayUrl+"/api/auth/request-password"),
+      Uri.parse('${Host.gatewayUrl}/api/auth/request-password'),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -41,7 +41,7 @@ class UserService {
 
     final body =password;
 
-    final Uri uri = Uri.parse("${Host.gatewayUrl}/api/auth/reset_password");
+    final uri = Uri.parse('${Host.gatewayUrl}/api/auth/reset_password');
 
     return await http.post(
       uri.replace(queryParameters: queryParameters),
@@ -51,7 +51,7 @@ class UserService {
   }
   static Future<http.Response> verifyExpiration(String token) async {
     return await http.post(
-      Uri.parse("${Host.gatewayUrl}/api/auth/verifyToken/$token"),
+      Uri.parse('${Host.gatewayUrl}/api/auth/verifyToken/$token'),
       headers: {
         'Content-Type': 'application/json',
       },

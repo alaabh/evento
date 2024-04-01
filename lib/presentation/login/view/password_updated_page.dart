@@ -1,13 +1,10 @@
 
 
 import 'package:auto_route/auto_route.dart';
-
+import 'package:evento/presentation/app_router.dart';
+import 'package:evento/widgets/button.dart';
+import 'package:evento/widgets/sideImage.dart';
 import 'package:flutter/material.dart';
-
-
-import '../../../widgets/button.dart';
-import '../../../widgets/sideImage.dart';
-import '../../app_router.dart';
 
 @RoutePage()
 class PasswordUpdatedPage extends StatefulWidget {
@@ -39,14 +36,14 @@ class _PasswordUpdatedPageState extends State<PasswordUpdatedPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Password Updated',
                       style: TextStyle(fontSize: 34, fontWeight: FontWeight.w700),
                     ),
                     SizedBox(
 
                       width: MediaQuery.of(context).size.width * 0.3,
-                      child: Text('Your password has been successfully reset. Click below to log in.'),
+                      child: const Text('Your password has been successfully reset. Click below to log in.'),
                     ),
                     SizedBox(
 
@@ -60,13 +57,13 @@ class _PasswordUpdatedPageState extends State<PasswordUpdatedPage> {
                         },
                         buttonText: 'Go back to login',
                         loader: false,
-                      )
-                    )
+                      ),
+                    ),
                   ],
                 ),
-              )),
+              ),),
 
-            SideImage(),
+            const SideImage(),
           ],
 
 

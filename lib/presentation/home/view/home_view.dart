@@ -1,3 +1,4 @@
+import 'package:evento/presentation/home/view/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -28,10 +29,7 @@ class _HomePageState extends State<HomePage> {
       'Index 2: Reports',
       style: optionStyle,
     ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
+  SettingsPage(),
     Text(
       'Index 4: Support',
       style: optionStyle,
@@ -65,6 +63,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.2,
               child: Column(
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
@@ -138,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                       Icons.settings,
                     ),
                     title: const Text('Settings'),
-                    selected: _selectedIndex == 1,
+                    selected: _selectedIndex == 3,
                     onTap: () {
                       // Update the state of the app
                       _onItemTapped(3);
@@ -150,8 +149,9 @@ class _HomePageState extends State<HomePage> {
                       Icons.contact_support_outlined,
                     ),
                     title: const Text('Support'),
-                    selected: _selectedIndex == 2,
+                    selected: _selectedIndex == 4,
                     onTap: () {
+
                       // Update the state of the app
                       _onItemTapped(4);
                       // Then close the drawer
@@ -178,7 +178,8 @@ class _HomePageState extends State<HomePage> {
           Flexible(
             child: Container(
               color: Colors.grey.shade200,
-              child: Center(
+
+              child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

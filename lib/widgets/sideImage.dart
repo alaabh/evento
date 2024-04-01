@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class SideImage extends StatefulWidget {
 
   const SideImage({
-    Key? key,
+    super.key,
 
 
-  }) : super(key: key);
+  });
 
   @override
   State<SideImage> createState() => _SideImageState();
@@ -20,7 +20,7 @@ class _SideImageState extends State<SideImage> {
       width: MediaQuery.of(context).size.width / 2,
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('image/login.png'), fit: BoxFit.fill)),
+              image: AssetImage('image/login.png'), fit: BoxFit.fill,),),
     );
   }
 }

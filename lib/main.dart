@@ -8,5 +8,5 @@ import 'package:url_strategy/url_strategy.dart';
 
 void main() async{
   setPathUrlStrategy();
-  bootstrap(() =>  App());
+  bootstrap(App.new);
 }

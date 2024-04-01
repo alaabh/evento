@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 class Button extends StatefulWidget {
-  final void Function()? onpressd;
-  final String? buttonText;
-  final bool? loader;
 
 
   const Button({
-    Key? key,
+    super.key,
     this.onpressd,
     this.buttonText,
     this.loader,
 
-  }) : super(key: key);
+  });
+  final void Function()? onpressd;
+  final String? buttonText;
+  final bool? loader;
 
   @override
   State<Button> createState() => _ButtonState();
@@ -32,8 +32,8 @@ class _ButtonState extends State<Button> {
             shape: MaterialStateProperty.all<
                 RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ))),
+                  borderRadius: BorderRadius.circular(8),
+                ),),),
         onPressed:widget.onpressd,
         child: widget.loader!
             ? SizedBox(

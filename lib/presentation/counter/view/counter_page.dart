@@ -1,5 +1,5 @@
-import 'package:evento/presentation/counter/counter.dart';
 import 'package:evento/l10n/l10n.dart';
+import 'package:evento/presentation/counter/counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

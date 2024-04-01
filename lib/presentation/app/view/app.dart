@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:evento/gen_l10n/app_localizations.dart';
+import 'package:evento/presentation/app_router.dart';
+import 'package:evento/presentation/login/cubit/cubit/log_in_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../app_router.dart';
-import '../../login/cubit/cubit/log_in_cubit.dart';
 
 class App extends StatelessWidget {
   App({super.key});
@@ -32,13 +31,13 @@ class App extends StatelessWidget {
           if (deepLink.path.startsWith('/reset_password')) {
             // continute with the platfrom link
             print(deepLink.path);
-            print("ba3");
+            print('ba3');
             return deepLink;
           } else {
             return DeepLink.defaultPath;
             
           }
-        }),
+        },),
         // home: const LoginPage(),
       ),
     );
