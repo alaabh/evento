@@ -242,6 +242,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "flutter_profile_picture",
+      "rootUri": "file:///C:/Users/siwar/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_profile_picture-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///C:/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -722,7 +728,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-04-01T00:05:03.226529Z",
+  "generated": "2024-04-06T14:28:03.545856Z",
   "generator": "pub",
   "generatorVersion": "3.3.1"
 }
