@@ -1,4 +1,5 @@
 import 'package:evento/presentation/home/view/account_page.dart';
+import 'package:evento/presentation/home/view/configuration_page.dart';
 import 'package:evento/utils/colorConstants.dart';
 import 'package:flutter/material.dart';
 
@@ -39,19 +40,20 @@ class _SettingsPageState extends State<SettingsPage>   with SingleTickerProvider
                 SizedBox(height:MediaQuery.of(context).size.height *0.03 ),
                 const Text('Access and customize various aspects of your account and platform settings.', style: TextStyle(fontSize: 14)),
                 SizedBox(height:MediaQuery.of(context).size.height *0.03 ),
-
                     TabBar(
+                      indicatorColor: ColorConstants.greenColor,
                       unselectedLabelColor: ColorConstants.greyColor,
                       labelColor: ColorConstants.greenColor,
+
                       tabs: [
                         Tab(
-                         text:   'Account '
+                         text:   'Account ',
                         ),
                         Tab(
-                         text : 'user managament '
+                         text : 'User Management '
                         ),
                         Tab(
-                            text : 'confg'
+                            text : 'Configuration'
                         )
                       ],
                       controller: tabController,
@@ -61,7 +63,7 @@ class _SettingsPageState extends State<SettingsPage>   with SingleTickerProvider
                       child: TabBarView(
                         physics: ScrollPhysics(),
                         viewportFraction: 1.0,
-                        children: [AccountPage(),Text('people'), Text('Person')],
+                        children: [AccountPage(),Text('people'), ConfigurationPage()],
                         controller: tabController,
                       ),
                     ),

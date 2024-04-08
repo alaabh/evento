@@ -2,7 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:evento/utils/colorConstants.dart';
 import 'package:evento/widgets/button.dart';
 import 'package:evento/widgets/input.dart';
+import 'package:evento/widgets/titleDescription.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
@@ -28,226 +31,246 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
 
     return
-       SingleChildScrollView(
-         child: Row(
-         //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+       Scaffold(
+         backgroundColor: Colors.grey.shade200,
+         body: SingleChildScrollView(
+           child: Row(
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                    width:MediaQuery.of(context).size.width * 0.3,
+                      child: Center(
+                        child: Card(
+                        color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TitleDescription(titleText: 'Personal information',
+                                    descriptionText:'These are your personal details, they are visible to the public', titleSize: 20 ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.05,
+                                ),
+                                 Text('Profile Picture',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold),),
+                                  Row(
+                                   children: [
 
-              children: [
-                SizedBox(
-         width:MediaQuery.of(context).size.width * 0.4,
-                  child: Card(
-                  color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                                      ProfilePicture(
+                                         name: 'bata',
+                                         radius: 31,
+                                         fontsize: 20,
+                                         tooltip: true,
+                                         img: 'https://static.vecteezy.com/system/resources/previews/002/325/235/non_2x/small-cute-duckling-outdoors-free-photo.JPG'),
 
-                           Text('Personal information',
-                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorConstants.greyBlackColor)),
-                           Text('These are your personal details, they are visible to the public',style: TextStyle(color: ColorConstants.greyColor),),
-                      SizedBox(
-                        height:  MediaQuery.of(context).size.height * 0.03,),
-                           Text('Profile Picture',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold),),
-                            Row(
-                             children: [
+                                     Column(
+                                       children: [
+                                         Row(
+                                           children: [
+                                             IconButton(onPressed:()=>print("test"), icon: Icon(
+                                               Icons.mode_edit_outline_outlined,
+                                                   color: ColorConstants.greenColor,
+                                               size: 20,
 
-                                ProfilePicture(
-                                   name: 'bata',
-                                   radius: 31,
-                                   fontsize: 20,
-                                   tooltip: true,
-                                   img: 'https://static.vecteezy.com/system/resources/previews/002/325/235/non_2x/small-cute-duckling-outdoors-free-photo.JPG'),
+                                             ))
+                                             ,
+                                             Text('Change',style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold ,color: ColorConstants.greenColor),)
+                                           ]),
+                                             Row(
+                                               children: [
+                                             IconButton(onPressed:()=>print("test"), icon: Icon(
+                                               Icons.delete_outline,
+                                               color: ColorConstants.redColor,
+                                               size: 20,
 
-                               Column(
-                                 children: [
-                                   Row(
-                                     children: [
-                                       IconButton(onPressed:()=>print("test"), icon: Icon(
-                                         Icons.mode_edit_outline_outlined,
-                                             color: ColorConstants.greenColor,
-                                         size: 20,
+                                             )),
+                                                 Text('Delete',style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold ,color: ColorConstants.redColor),)
 
-                                       ))
-                                       ,
-                                       Text('change',style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold ,color: ColorConstants.greenColor),)
-                                     ]),
-                                       Row(
-                                         children: [
-                                       IconButton(onPressed:()=>print("test"), icon: Icon(
-                                         Icons.delete_outline,
-                                         color: ColorConstants.redColor,
-                                         size: 20,
-
-                                       )),
-                                           Text('Delete',style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold ,color: ColorConstants.redColor),)
-
-                                         ],
+                                               ],
+                                         ),
+                                       ],
+                                     )
+                                   ],
+                                 ),
+                                 Text('Full Name',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                              InputText(controller: nameController,
+                                    hint: 'Full name',
                                    ),
-                                 ],
-                               )
-                             ],
-                           ),
-                           Text('Full Name',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
-                          SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                          SizedBox(
-                            width:  MediaQuery.of(context).size.width * 0.3,
 
-                            child: InputText(controller: nameController,
-                              hint: 'Full name',
-                             ),
-                          ),
-                          SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                           Text('Role',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
-                          SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                          SizedBox(
-                            width:  MediaQuery.of(context).size.width * 0.3,
-                            height:  MediaQuery.of(context).size.height * 0.06,
-                            child: DropdownButtonFormField<String>(
-                              style: TextStyle(fontSize: 15),
-                              value: 'Admin',
-                              decoration:  InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide:  BorderSide(color:ColorConstants.whiteColor, width: 0),
-                                  borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                 Text('Role',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                SizedBox(
+
+                                  height:  MediaQuery.of(context).size.height * 0.06,
+                                  child: DropdownButtonFormField<String>(
+                                    style: TextStyle(fontSize: 15),
+                                    value: 'Admin',
+                                    decoration:  InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide:  BorderSide(color:ColorConstants.whiteColor, width: 0),
+                                        borderRadius:
+                                        const BorderRadius.all(Radius.circular(8)),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:  BorderSide(color:ColorConstants.greenColor, width: 0),
+                                        borderRadius:
+                                        const BorderRadius.all(Radius.circular(8)),
+                                      ),
+                                    ),
+
+                                    items: <String>['Admin', 'Operator'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          style: const TextStyle(overflow: TextOverflow.visible),
+                                        ),
+                                      );
+                                    }).toList(),
+                                    onChanged: (_) {},
+
+                                    ),
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide:  BorderSide(color:ColorConstants.greenColor, width: 0),
-                                  borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                 Text('Phone number',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                 SizedBox(
+
+                                   height:  MediaQuery.of(context).size.height * 0.06,
+                                   child :IntlPhoneField(
+
+                                 decoration: InputDecoration(
+                                   counterText: '',
+
+                                   enabledBorder: OutlineInputBorder(
+                                     borderSide:  BorderSide(color:ColorConstants.whiteColor, width: 0),
+                                     borderRadius:
+                                     const BorderRadius.all(Radius.circular(8)),
+                                   ),
+                                   focusedBorder: OutlineInputBorder(
+                                     borderSide:  BorderSide(color:ColorConstants.greenColor, width: 0),
+                                     borderRadius:
+                                     const BorderRadius.all(Radius.circular(8)),
+
+                                   ),
+                                   errorBorder: OutlineInputBorder(
+                                     borderSide:  BorderSide(color:ColorConstants.redColor, width: 0),
+                                     borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                   ),
+                                prefixIcon: Icon(Icons.phone, color: Colors.grey),
                                 ),
-                              ),
+                                initialCountryCode: 'TN',
 
-                              items: <String>['Admin', 'Operator'].map((String value) {
+                                onChanged: (phone) {
+                                print(phone.completeNumber);
+                                },
 
 
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: const TextStyle(overflow: TextOverflow.visible), // Handle overflow with ellipsis
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (_) {},
+                                ),
 
-                              ),
+                                 ),
+
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                 Text('Email',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                            InputText(controller: emailController,
+                                    hint: 'Your email',
+                                    fct:
+                                        (value) {
+                                      if (!RegExp(
+                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',)
+                                          .hasMatch(value!)&&(value.isNotEmpty)) {
+                                        return 'Wrong email format.';
+                                      }
+                                      return null;}),
+
+                                 SizedBox(height:MediaQuery.of(context).size.width * 0.01),
+                                 SizedBox(
+
+                                     width: MediaQuery.of(context).size.width ,
+                                   child: Button(buttonText: 'Save changes',
+                                    onpressd:  () {
+                                      context.router.pushNamed('/login');
+                                    },
+                                    loader: false,),
+                                 ),
+
+                              ],
+                            ),
                           ),
-                          SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                           Text('Phone number',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
-                          SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                           SizedBox(
-                               width:  MediaQuery.of(context).size.width * 0.3,
-                             height:  MediaQuery.of(context).size.height * 0.06,
-                             child :IntlPhoneField(
-
-                           decoration: InputDecoration(
-                             counterText: '',
-
-                             enabledBorder: OutlineInputBorder(
-                               borderSide:  BorderSide(color:ColorConstants.whiteColor, width: 0),
-                               borderRadius:
-                               const BorderRadius.all(Radius.circular(8)),
-                             ),
-                             focusedBorder: OutlineInputBorder(
-                               borderSide:  BorderSide(color:ColorConstants.greenColor, width: 0),
-                               borderRadius:
-                               const BorderRadius.all(Radius.circular(8)),
-
-                             ),
-                             errorBorder: OutlineInputBorder(
-                               borderSide:  BorderSide(color:ColorConstants.redColor, width: 0),
-                               borderRadius: const BorderRadius.all(Radius.circular(8)),
-                             ),
-                          prefixIcon: Icon(Icons.phone, color: Colors.grey),
-                          ),
-                          initialCountryCode: 'TN',
-
-                          onChanged: (phone) {
-                          print(phone.completeNumber);
-                          },
-
-
-                          ),
-
-                           ),
-
-                          SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                           Text('Email',style: TextStyle(fontWeight: FontWeight.bold,color: ColorConstants.greyBlackColor),),
-                          SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                          SizedBox(
-                            width:  MediaQuery.of(context).size.width * 0.3,
-                            child: InputText(controller: emailController,
-                              hint: 'Your email',
-                              fct:
-                                  (value) {
-                                if (!RegExp(
-                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$',)
-                                    .hasMatch(value!)&&(value.isNotEmpty)) {
-                                  return 'Wrong email format.';
-                                }
-                                return null;},),
-                          ),
-                           SizedBox(height:MediaQuery.of(context).size.width * 0.01),
-                           SizedBox(
-
-                               width: MediaQuery.of(context).size.width * 0.3,
-                             child: Button(buttonText: 'Save changes',
-                              onpressd:  () {
-                                context.router.pushNamed('/login');
-                              },
-                              loader: false,),
-                           ),
-
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                width:MediaQuery.of(context).size.width * 0.4,
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                  SizedBox(width: MediaQuery.of(context).size.width * 0.02 ,),
+                  Expanded(
+                    child: SizedBox(
+                    width:MediaQuery.of(context).size.width * 0.3,
+                      child: Card(
+                          margin: EdgeInsets.only(top: 0.0,right: 20.0),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TitleDescription(titleText: 'Update Password',
+                                    descriptionText:'Enter your current password to make update', titleSize: 20 ),
+                                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                                Text('Current Password',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold)),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                 InputText(controller: passwordController,hint:'Type your password',obscure: true),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                Text('New Password',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold)),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                               InputText(controller: newPasswordController,hint:'Type your new password',obscure: true),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                Text('Confirm New Password',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold)),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                               InputText(controller: confirmPasswordController,hint:'Type your new password again',obscure: true),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
+                                Center(
+                                  child: InkWell(
+                                    onTap: () {
+                                      context.router.pushNamed('/request-password');
+                                    },
+                                    child: Text(
+                                      'Forget password?',
+                                      style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: ColorConstants.greenColor,
+                                        color: ColorConstants.greenColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
 
-                          Text('Update Password',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: ColorConstants.greyBlackColor)),
-                            Text('Enter your current password to make update',style: TextStyle(color: ColorConstants.greyColor),),
-                              SizedBox(
-                        height:  MediaQuery.of(context).size.height * 0.03,),
-                      Text('Current Password',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold),),
-                            SizedBox(
-                              width:  MediaQuery.of(context).size.height * 0.3,
-                              child:
-                            InputText(controller: passwordController,hint:'Your password',obscure: true,)),
-                            SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                            Text('New Password',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold),),
-                        SizedBox(
-                          width:  MediaQuery.of(context).size.width * 0.03,
-                          child:
-                          InputText(controller: newPasswordController,hint:'Your password',obscure: true,)),
-                            SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                            Text('Confirm New Password',style: TextStyle(color: ColorConstants.greyBlackColor,fontWeight: FontWeight.bold),),
-                        SizedBox(
-                          width:  MediaQuery.of(context).size.width * 0.03,
-                          child:
-                          InputText(controller: confirmPasswordController,hint:'Your password',obscure: true,),),
-                            SizedBox(height:MediaQuery.of(context).size.height * 0.01 ),
-                          ],
-                  ))),
-                )
+                                 SizedBox(
+                                          width:MediaQuery.of(context).size.width ,
+                                          child: Button(buttonText: 'Update password',
+                                      onpressd:  () {
+                                        context.router.pushNamed('/login');
+                                      },
+                                      loader: false,),
+                                 ),
 
-              ],
+                              ],
+                      ))),
+                    ),
+                  )
+
+                ],
 
 
 
-             ),
-       );}}
+               ),
+         ),
+       );
+  }}
